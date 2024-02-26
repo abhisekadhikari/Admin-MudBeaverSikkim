@@ -1,7 +1,12 @@
-const { getAppoints } = require("../controllers/appointment.controller");
+const {
+    getAppoints,
+    deleteAppointment,
+} = require("../controllers/appointment.controller")
 
-const appointmentRoutes = require("express").Router();
+const appointmentRoutes = require("express").Router()
 
-appointmentRoutes.route("/").get(getAppoints);
+appointmentRoutes.route("/").get(getAppoints)
 
-module.exports = { appointmentRoutes };
+appointmentRoutes.route("/:id").delete(deleteAppointment)
+
+module.exports = { appointmentRoutes }

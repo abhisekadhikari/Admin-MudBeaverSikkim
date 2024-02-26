@@ -248,7 +248,7 @@
           <div class="grid gap-6 mb-8 md:grid-cols-2">
 
             <%if (data.length == 0) { %>
-              <h1 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">No Contact Available</h1>
+              <h1 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">No Content Available</h1>
               <% } %>
 
             <!-- start -->
@@ -274,6 +274,11 @@
                 <h4 class="mb-4 font-semibold dark:text-gray-300">
                   Subject: <%= data[i].subject %>
                 </h4>
+
+                <p class="dark:text-gray-300">
+                  Date: <%= data[i].date %>
+                </p>
+
                 <p class="dark:text-gray-300">
                   <%= data[i].message %>
                 </p>

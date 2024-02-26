@@ -1,7 +1,12 @@
-const { getRequirements } = require("../controllers/requirement.controller");
+const {
+    getRequirements,
+    deleteRequirement,
+} = require("../controllers/requirement.controller")
 
-const requirementRoute = require("express").Router();
+const requirementRoute = require("express").Router()
 
-requirementRoute.route("/").get(getRequirements);
+requirementRoute.route("/").get(getRequirements)
 
-module.exports = { requirementRoute };
+requirementRoute.route("/:id").delete(deleteRequirement)
+
+module.exports = { requirementRoute }

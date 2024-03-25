@@ -6,16 +6,19 @@ const { appointmentRoutes } = require("./appointment.routes")
 const { signinRoutes } = require("./signin.routes")
 const checkAuth = require("../middleware/checkAuth.middleware")
 const isLoggedIn = require("../middleware/isLoggedIn.middleware")
+const { blogRoute } = require("./blog.routes")
 
 mainRoutes.use("/auth", checkAuth, signinRoutes)
-
-mainRoutes.use("/", isLoggedIn, dashboardRoutes)
 
 mainRoutes.use("/contact", isLoggedIn, contactRoutes)
 
 mainRoutes.use("/requirements", isLoggedIn, requirementRoute)
 
 mainRoutes.use("/appointments", isLoggedIn, appointmentRoutes)
+
+mainRoutes.use("/blog", blogRoute)
+
+mainRoutes.use("/", isLoggedIn, dashboardRoutes)
 
 mainRoutes.route("/logout").get((req, res) => {
     req.logout((err) => {

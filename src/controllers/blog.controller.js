@@ -21,10 +21,7 @@ const postBlog = asyncErrorHandler(async (req, res) => {
         },
     })
 
-    res.status(201).json({
-        message: "Blog created successfully",
-        status: true,
-    })
+    res.redirect("/blogs")
 })
 
 const renderBlog = asyncErrorHandler(async (req, res) => {

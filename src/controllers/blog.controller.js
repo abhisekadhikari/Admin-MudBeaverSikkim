@@ -21,7 +21,7 @@ const postBlog = asyncErrorHandler(async (req, res) => {
         },
     })
 
-    res.redirect("/blogs")
+    res.redirect("/posts")
 })
 
 const renderBlog = asyncErrorHandler(async (req, res) => {

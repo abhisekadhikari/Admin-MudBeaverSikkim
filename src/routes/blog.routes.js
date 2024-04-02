@@ -11,7 +11,7 @@ const blogRoute = require("express").Router()
 
 blogRoute.route("/").get(isLoggedIn, renderBlog)
 
-blogRoute.route("/").post(isLoggedIn, multer.single("image"), postBlog)
+blogRoute.route("/").post(isLoggedIn, multer.array("image"), postBlog)
 
 blogRoute.route("/all").get(getBlogs)
 

@@ -306,8 +306,15 @@
                       Date: <%= data[i].createdAt %>
                     </h4>
 
-                    <img class="object-cover w-30 h-10" src="<%= data[i].image.imageUrl %>" alt="">
 
+
+                    <% data[i].image.forEach((image)=>{
+                      %>
+                      <img class="object-cover w-30 h-10" src="<%= image %>" alt="image">
+                      <%
+                  }) %>
+
+                    
                   </div>
 
                   <% } %>

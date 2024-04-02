@@ -20,7 +20,8 @@ const imageUploader = async (...image_details) => {
 
 const imageRemover = async (imageId) => {
     try {
-        const result = await cloudinary.uploader.destroy(imageId, {
+        const result = await cloudinary.api.delete_resources(imageId, {
+            type: "upload",
             resource_type: "image",
         })
         return result

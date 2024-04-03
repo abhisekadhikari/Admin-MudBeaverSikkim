@@ -35,6 +35,14 @@
             background-color: #7e3af2;
             transition: 0.4s;
         }
+
+        .uploaded-image {
+            max-height: 100px;
+            /* Set the maximum height for each image */
+            float: left;
+            margin-left: 5px;
+            /* Add some spacing between images */
+        }
     </style>
 </head>
 
@@ -51,38 +59,38 @@
                 </a>
                 <ul class="mt-6">
                     <li class="relative px-6 py-3">
-                      <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                        href="/">
-                        <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                          stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                          <path
-                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                          </path>
-                        </svg>
-                        <span class="ml-4">Dashboard</span>
-                      </a>
+                        <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                            href="/">
+                            <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                                </path>
+                            </svg>
+                            <span class="ml-4">Dashboard</span>
+                        </a>
                     </li>
 
 
-                
 
-            
 
-                        <li class="relative px-6 py-3">
-                            <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
-                                aria-hidden="true"></span>
-                            <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                                href="/">
-                                <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
-                                    stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path
-                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
-                                    </path>
-                                </svg>
-                                <span class="ml-4">Form</span>
-                            </a>
-                        </li>
-                    
+
+
+                    <li class="relative px-6 py-3">
+                        <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                            aria-hidden="true"></span>
+                        <a class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                            href="/">
+                            <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                                <path
+                                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                                </path>
+                            </svg>
+                            <span class="ml-4">Form</span>
+                        </a>
+                    </li>
+
 
                     <li class="relative px-6 py-3">
                         <a class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -325,7 +333,9 @@
                                     </svg>
                                 </button>
                             </form>
-                            <h1 style="color: red;"><%= data %></h1>
+                            <h1 style="color: red;">
+                                <%= data %>
+                            </h1>
                         </div>
                     </article>
 
@@ -350,7 +360,7 @@
 
 </body>
 <script>
-    const onChangeHandler = () => {
+    /* const onChangeHandler = () => {
         const input = document.getElementById('files');
         const label = document.querySelector('.custom-label');
         const span = document.getElementById('blah');
@@ -371,6 +381,30 @@
         }
 
 
+    } */
+
+    const onChangeHandler = () => {
+        const input = document.getElementById('files');
+        const label = document.querySelector('.custom-label');
+        const art = document.getElementById('myArticle');
+        const thisSpan = document.getElementById('thiSpan');
+
+        const imagesContainer = document.createElement('div'); // Create a container for images
+        imagesContainer.classList.add('images-container');
+
+        Array.from(input.files).forEach(file => {
+            const image = document.createElement('img'); // Create an image element for each file
+            image.src = URL.createObjectURL(file);
+            image.classList.add('uploaded-image');
+            imagesContainer.appendChild(image); // Append the image to the container
+        });
+
+        thisSpan.innerHTML = ''; // Clear any previously displayed images
+        thisSpan.appendChild(imagesContainer); // Append the container to the span
+
+        label.innerHTML = "Your Selected Images...";
+
+        art.style.height = "auto"; // Adjust article height to accommodate multiple images
     }
 
 </script>
